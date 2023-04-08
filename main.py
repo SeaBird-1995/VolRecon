@@ -1,5 +1,7 @@
 # VolRecon
-
+import sys
+import os
+sys.path.insert(0, os.getcwd()) # HACK add the root folder
 import argparse
 from re import I
 from stat import UF_OPAQUE
@@ -14,10 +16,10 @@ from pytorch_lightning import seed_everything
 from pytorch_lightning.utilities.model_summary import ModelSummary
 
 
-from code.model import VolRecon
-from code.dataset.dtu_train import MVSDataset
-from code.dataset.dtu_test_sparse import DtuFitSparse
-from code.dataset.general_fit import GeneralFit
+from source.model import VolRecon
+from source.dataset.dtu_train import MVSDataset
+from source.dataset.dtu_test_sparse import DtuFitSparse
+from source.dataset.general_fit import GeneralFit
 
 PI = math.pi
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -89,16 +91,16 @@ if __name__ == "__main__":
         dtu_dataset_train = MVSDataset(            
                 root_dir=args.root_dir,
                 split="train",
-                split_filepath="code/dataset/dtu/lists/train.txt",
-                pair_filepath="code/dataset/dtu/dtu_pairs.txt",
+                split_filepath="source/dataset/dtu/lists/train.txt",
+                pair_filepath="source/dataset/dtu/dtu_pairs.txt",
                 n_views=5,
                 )
 
         dtu_dataset_val = MVSDataset(            
                 root_dir=args.root_dir,
                 split="test",
-                split_filepath="code/dataset/dtu/lists/test.txt",
-                pair_filepath="code/dataset/dtu/dtu_pairs.txt",
+                split_filepath="source/dataset/dtu/lists/test.txt",
+                pair_filepath="source/dataset/dtu/dtu_pairs.txt",
                 n_views=5,
                 test_ref_views = [23],  # only use view 23
                 )

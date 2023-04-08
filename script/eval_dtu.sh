@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-DATASET="../DTU_TEST"
+DATASET="./DTU_TEST"
 
 LOAD_CKPT="checkpoints/epoch=15-step=193199.ckpt" 
 
